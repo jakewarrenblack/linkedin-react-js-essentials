@@ -7,7 +7,7 @@ import App from "./App";
 //const [, , , fourth] = ["hedgehog", "dynamite", "jumper", "golf shoes"];
 
 ReactDOM.render(
-  <App />,
+  <App login="jakewarrenblack" />,
 
   document.getElementById("root")
 );
