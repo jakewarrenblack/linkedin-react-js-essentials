@@ -3,37 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
+function AppTwo() {
+  return <h1>This is the second app</h1>;
+}
+
 ReactDOM.render(
-  /* Name of tag, properties to apply, child */
-  // React.createElement(
-  //   "h1",
-  //   {
-  //     style: { color: "blue" },
-  //   },
-  //   "Hello world"
-  // ),
-
-  // ** Can have a tag as a child, but this is really repetitive... **
-  // React.createElement(
-  //   "ul",
-  //   null,
-  //   React.createElement("li", null, "Monday"),
-  //   React.createElement("li", null, "Tuesday"),
-  //   React.createElement("li", null, "Wednesday"),
-  //   React.createElement("li", null, "Thursday")
-  // ),
-
-  // Better like this, JSX syntax
-  // Remember this doesn't run in the browser natively, Babel takes care of it,
-  // converts this to use the above 'create element' calls
-  // <ul>
-  //   <li>Monday</li>
-  //   <li>Tuesday</li>
-  //   <li>Wednesday</li>
-  //   <li>Thursday</li>
-  // </ul>,
-
-  <App />,
-
+  // React.Fragment helps us get around using an unnecessary <div> tag,
+  // just for wrapping our two apps. Like in Vue, we need one root component.
+  // The fragment acts like a wrapper without actually adding anything to the DOM
+  // Our </> is just shorthand for 'React.Fragment'
+  <>
+    <App />,
+    <AppTwo />
+  </>,
   document.getElementById("root")
 );
