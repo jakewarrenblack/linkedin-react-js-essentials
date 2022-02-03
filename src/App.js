@@ -8,8 +8,10 @@ function NormalComponent() {
   return <h1>Anybody can see this Component</h1>;
 }
 
-function App(props) {
-  return <>{props.authorised ? <SecretComponent /> : <NormalComponent />}</>;
+// object destructuring, authorised is a key of 'props, but like this
+// we can just use the key
+function App({ authorised }) {
+  return <>{authorised ? <SecretComponent /> : <NormalComponent />}</>;
 }
 
 export default App;
