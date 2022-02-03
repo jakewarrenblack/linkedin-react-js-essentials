@@ -1,24 +1,45 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-// Using useEffect to fetch some data from a remote source
+// Handling different responses
 
 function App({ login }) {
-  // data var and method to update the data,
-  // start as null because there will be no data when the app loads
   const [data, setData] = useState(null);
 
-  // login is passed as a prop from index.js
+  // Handling loading and error states
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    // setData switches the state from 'null' to our JSON result
+    // cancel immediately if no login
+    if (!login) return;
+    // if there is a login, start loading
+    setLoading(true);
     fetch(`https://api.github.com/users/${login}`)
       .then((res) => res.json())
-      .then(setData);
-  }, []);
+      .then(setData)
+      // once the data has been set, we're no longer loading
+      .then(() => setLoading(false))
+      .catch(setError);
+    // any time the value of login changes, we will call this useEffect,
+    // that's the result of passing 'login' into useEffect's dependency array
+  }, [login]);
+
+  if (loading) return <h1>Loading...</h1>;
+
+  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
+
+  if (!data) return null;
 
   if (data) {
-    // This div will display the data from the api
-    return <div>{JSON.stringify(data)}</div>;
+    console.log(data);
+    return (
+      <div>
+        <h1>{data.login}</h1>
+        <h2>{data.location}</h2>
+        <img alt={data.login} src={data.avatar_url} />
+      </div>
+    );
   }
 
   return <div>No user available</div>;
