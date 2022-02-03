@@ -1,17 +1,27 @@
+import React, { useState } from "react";
 import "./App.css";
 
-function SecretComponent() {
-  return <h1>Top secret information here</h1>;
-}
+function App() {
+  // We can use array destructuring to pop the first item out of this array
+  // and give it a name
 
-function NormalComponent() {
-  return <h1>Anybody can see this Component</h1>;
-}
+  // useState has 2 values in it, so we use destructuring to get at them,
+  // instead of having to use indexes
 
-// object destructuring, authorised is a key of 'props, but like this
-// we can just use the key
-function App({ authorised }) {
-  return <>{authorised ? <SecretComponent /> : <NormalComponent />}</>;
+  // first is state variable, second is function for updating the state
+  // this is the naming convention:
+  const [emotion, setEmotion] = useState("happy");
+  // useState(initial value here, can be anything; boolean, number, string)
+
+  return (
+    <>
+      <h1>Current mood is {emotion}</h1>
+      {/* Plug a new value into the 'emotion' state */}
+      <button onClick={() => setEmotion("happy")}>happy</button>
+      <button onClick={() => setEmotion("sad")}>sad</button>
+      <button onClick={() => setEmotion("frustrated")}>frustrated</button>
+    </>
+  );
 }
 
 export default App;
