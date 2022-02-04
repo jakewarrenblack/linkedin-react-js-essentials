@@ -2,12 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-
-// Commas act as placeholders
-//const [, , , fourth] = ["hedgehog", "dynamite", "jumper", "golf shoes"];
+// We use BrowserRouter because we're using the dom/website
+// React also has tools for native apps
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
-  <App login="jakewarrenblack" />,
+  // Wrap our app in the Router,
+  // giving the app access to all router properties,
+  // eg location, history
+  <Router>
+    <App login="jakewarrenblack" />,
+  </Router>,
 
   document.getElementById("root")
 );

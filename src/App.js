@@ -1,9 +1,16 @@
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { Home, About, Events, Contact } from "./pages";
 
 function App() {
   return (
     <div>
-      <h1>Hello react testing library</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
     </div>
   );
 }
