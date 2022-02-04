@@ -1,6 +1,6 @@
 // responsible for all pages which are part of our app
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Outlet } from "react-router-dom";
 
 // some small components to be displayed as we navigate around the site
 export function Home() {
@@ -9,8 +9,8 @@ export function Home() {
       <h1>[Company Website]</h1>
       <nav>
         <Link to="about">About</Link>
-        <Link to="about">Events</Link>
-        <Link to="about">Contact</Link>
+        <Link to="events">Events</Link>
+        <Link to="contact">Contact</Link>
       </nav>
     </div>
   );
@@ -20,6 +20,32 @@ export function About() {
   return (
     <div>
       <h1>[About]</h1>
+      <Outlet />
+      {/* Outlet is responsible for displaying whatever is inside a nested component*/}
+    </div>
+  );
+}
+
+export function Services() {
+  return (
+    <div>
+      <h2>Our Services</h2>
+    </div>
+  );
+}
+
+export function CompanyHistory() {
+  return (
+    <div>
+      <h2>Our Company History</h2>
+    </div>
+  );
+}
+
+export function Location() {
+  return (
+    <div>
+      <h2>Our Location</h2>
     </div>
   );
 }
